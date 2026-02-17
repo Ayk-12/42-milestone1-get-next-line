@@ -75,6 +75,7 @@ char	*ft_readline(int fd, char *buffer, int bytes_read)
 		if (bytes_read < 0)
 		{
 			free(new_buffer);
+			free(buffer);
 			return (NULL);
 		}
 		new_buffer[bytes_read] = '\0';
@@ -98,7 +99,12 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
 	buffer[fd] = ft_readline(fd, buffer[fd], bytes_read);
-	line = ft_get_line(buffer[fd]);
-	buffer[fd] = ft_next(buffer[fd]);
+	if (buffer[fd] == NULL)
+		line = NULL;
+	else
+	{
+		line = ft_get_line(buffer[fd]);
+		buffer[fd] = ft_next(buffer[fd]);
+	}
 	return (line);
 }

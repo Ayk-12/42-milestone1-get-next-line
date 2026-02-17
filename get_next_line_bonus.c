@@ -96,7 +96,7 @@ char	*get_next_line(int fd)
 	int			bytes_read;
 
 	bytes_read = 1;
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	buffer[fd] = ft_readline(fd, buffer[fd], bytes_read);
 	if (buffer[fd] == NULL)

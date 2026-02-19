@@ -86,6 +86,7 @@ char	*ft_readline(int fd, char *buffer, int bytes_read)
 			break ;
 	}
 	free(new_buffer);
+	new_buffer = NULL;
 	return (buffer);
 }
 
